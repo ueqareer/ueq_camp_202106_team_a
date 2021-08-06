@@ -1,5 +1,7 @@
+import 'package:cordinate_sns_app/screens/create_account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_textfield.dart';
 
 class Screen1 extends StatelessWidget {
   @override
@@ -43,12 +45,17 @@ class Screen1 extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   print('アカウント作成画面に遷移');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateAccountScreen()),
+                  );
                 },
                 child: Text(
                   'アカウント作成',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.tealAccent,
+                    color: Colors.tealAccent.shade700,
                   ),
                 ),
               )
@@ -56,60 +63,6 @@ class Screen1 extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class NeumorphicTextField extends StatefulWidget {
-  String label;
-  String hint;
-
-  final ValueChanged<String> onChanged;
-
-  NeumorphicTextField(
-      {required this.label, required this.hint, required this.onChanged});
-
-  @override
-  _NeumorphicTextFieldState createState() => _NeumorphicTextFieldState();
-}
-
-class _NeumorphicTextFieldState extends State<NeumorphicTextField> {
-  late TextEditingController _controller;
-
-  @override
-  void initState() {
-    _controller = TextEditingController(text: widget.hint);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 8),
-          child: Text(
-            this.widget.label,
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              color: NeumorphicTheme.defaultTextColor(context),
-            ),
-          ),
-        ),
-        Neumorphic(
-          margin: EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 4),
-          style: NeumorphicStyle(
-            depth: NeumorphicTheme.embossDepth(context),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
-          child: TextField(
-            onChanged: this.widget.onChanged,
-            controller: _controller,
-            decoration: InputDecoration.collapsed(hintText: this.widget.hint),
-          ),
-        )
-      ],
     );
   }
 }
