@@ -10,81 +10,83 @@ class CreateAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeumorphicApp(
-        home: Scaffold(
-      appBar: NeumorphicAppBar(
-        title: NeumorphicText(
-          "Create Account Page",
-          style: NeumorphicStyle(color: Colors.black),
-          textStyle:
-              NeumorphicTextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+        home: SafeArea(
+      child: Scaffold(
+        appBar: NeumorphicAppBar(
+          title: NeumorphicText(
+            "Create Account Page",
+            style: NeumorphicStyle(color: Colors.black),
+            textStyle: NeumorphicTextStyle(
+                fontWeight: FontWeight.bold, fontSize: 30.0),
+          ),
         ),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 120,
-              width: 120,
-              child: Neumorphic(
-                padding: EdgeInsets.all(30),
-                style: NeumorphicStyle(
-                  boxShape: NeumorphicBoxShape.circle(),
-                  depth: NeumorphicTheme.embossDepth(context),
-                ),
-                child: Image(
-                  image: AssetImage("images/user.png"),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: NeumorphicText(
-                "プロフィール画像を選択",
-                style: NeumorphicStyle(color: Colors.black54),
-                textStyle: NeumorphicTextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12.0,
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 120,
+                width: 120,
+                child: Neumorphic(
+                  padding: EdgeInsets.all(30),
+                  style: NeumorphicStyle(
+                    boxShape: NeumorphicBoxShape.circle(),
+                    depth: NeumorphicTheme.embossDepth(context),
+                  ),
+                  child: Image(
+                    image: AssetImage("images/user.png"),
+                  ),
                 ),
               ),
-            ),
-            NeumorphicTextForTextField(
-              text: "ユーザ名を入力してください",
-              color: Colors.black54,
-            ),
-            NeumorphicTextField(
-              isPassword: false,
-              hint: "",
-              onChanged: (lastName) {},
-            ),
-            NeumorphicTextForTextField(
-              text: "メールアドレスを入力してください",
-              color: Colors.black54,
-            ),
-            NeumorphicTextField(
-              isPassword: false,
-              hint: "",
-              onChanged: (mail) {},
-            ),
-            NeumorphicTextForTextField(
-              text: "パスワードを入力してください",
-              color: Colors.black54,
-            ),
-            NeumorphicTextField(
-              isPassword: true,
-              hint: "",
-              onChanged: (password) {},
-            ),
-            NeumorphicTextForTextField(
-              text: "確認用パスワードを入力してください",
-              color: Colors.black54,
-            ),
-            NeumorphicTextField(
-              isPassword: true,
-              hint: "",
-              onChanged: (reconfirmPassword) {},
-            ),
-            NeumorphicCustomButton(text: "アカウント作成"),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: NeumorphicText(
+                  "プロフィール画像を選択",
+                  style: NeumorphicStyle(color: Colors.black54),
+                  textStyle: NeumorphicTextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.0,
+                  ),
+                ),
+              ),
+              NeumorphicTextForTextField(
+                text: "ユーザ名を入力してください",
+                color: Colors.black54,
+              ),
+              NeumorphicTextField(
+                isPassword: false,
+                hint: "",
+                onChanged: (lastName) {},
+              ),
+              NeumorphicTextForTextField(
+                text: "メールアドレスを入力してください",
+                color: Colors.black54,
+              ),
+              NeumorphicTextField(
+                isPassword: false,
+                hint: "",
+                onChanged: (mail) {},
+              ),
+              NeumorphicTextForTextField(
+                text: "パスワードを入力してください",
+                color: Colors.black54,
+              ),
+              NeumorphicTextField(
+                isPassword: true,
+                hint: "",
+                onChanged: (password) {},
+              ),
+              NeumorphicTextForTextField(
+                text: "確認用パスワードを入力してください",
+                color: Colors.black54,
+              ),
+              NeumorphicTextField(
+                isPassword: true,
+                hint: "",
+                onChanged: (reconfirmPassword) {},
+              ),
+              NeumorphicCustomButton(text: "アカウント作成"),
+            ],
+          ),
         ),
       ),
     ));
