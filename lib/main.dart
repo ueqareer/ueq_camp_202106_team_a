@@ -43,58 +43,60 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: NeumorphicAppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FloatingActionButton(
-              backgroundColor: Colors.red,
-              heroTag: 'screen1',
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Screen1(),
-                    ));
-              },
-              tooltip: 'Increment',
-              child: Icon(Icons.add),
-            ),
-            FloatingActionButton(
-                backgroundColor: Colors.blue,
-                heroTag: 'screen2',
+    return SafeArea(
+      child: Scaffold(
+        appBar: NeumorphicAppBar(
+          title: Text(widget.title),
+        ),
+        body: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FloatingActionButton(
+                backgroundColor: Colors.red,
+                heroTag: 'screen1',
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Screen2(),
+                        builder: (context) => Screen1(),
                       ));
-                }),
-            FloatingActionButton(
-                backgroundColor: Colors.yellow,
-                heroTag: 'screen3',
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Screen3(),
-                      ));
-                }),
-            FloatingActionButton(
-                backgroundColor: Colors.green,
-                heroTag: 'screen4',
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Screen4(),
-                      ));
-                }),
-          ],
+                },
+                tooltip: 'Increment',
+                child: Icon(Icons.add),
+              ),
+              FloatingActionButton(
+                  backgroundColor: Colors.blue,
+                  heroTag: 'screen2',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Screen2(),
+                        ));
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.yellow,
+                  heroTag: 'screen3',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Screen3(),
+                        ));
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.green,
+                  heroTag: 'screen4',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Screen4(),
+                        ));
+                  }),
+            ],
+          ),
         ),
       ),
     );
