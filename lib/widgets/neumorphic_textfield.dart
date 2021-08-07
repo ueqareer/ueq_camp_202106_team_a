@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class NeumorphicTextField extends StatefulWidget {
-  String label;
   String hint;
+  bool isPassword;
 
   final ValueChanged<String> onChanged;
 
   NeumorphicTextField(
-      {required this.label, required this.hint, required this.onChanged});
+      {required this.isPassword, required this.hint, required this.onChanged});
 
   @override
   _NeumorphicTextFieldState createState() => _NeumorphicTextFieldState();
@@ -28,23 +28,14 @@ class _NeumorphicTextFieldState extends State<NeumorphicTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 8),
-          child: Text(
-            this.widget.label,
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              color: NeumorphicTheme.defaultTextColor(context),
-            ),
-          ),
-        ),
         Neumorphic(
-          margin: EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 4),
+          margin: EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 20),
           style: NeumorphicStyle(
             depth: NeumorphicTheme.embossDepth(context),
           ),
           padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
           child: TextField(
+            obscureText: this.widget.isPassword,
             onChanged: this.widget.onChanged,
             controller: _controller,
             decoration: InputDecoration.collapsed(hintText: this.widget.hint),

@@ -2,64 +2,71 @@ import 'package:cordinate_sns_app/screens/create_account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_textfield.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_text_for_textfield.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
 
 class Screen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: NeumorphicAppBar(
+        title: NeumorphicText(
+          "Login Page",
+          style: NeumorphicStyle(color: Colors.black),
+          textStyle:
+              NeumorphicTextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          NeumorphicTextForTextField(
+            text: 'ユーザ名を入力してください',
+            color: Colors.black54,
+          ),
           NeumorphicTextField(
-            label: 'ユーザ名を入力してください',
-            hint: '',
+            isPassword: false,
+            hint: "",
             onChanged: (lastName) {},
           ),
+          NeumorphicTextForTextField(
+            text: 'パスワード入力してください',
+            color: Colors.black54,
+          ),
           NeumorphicTextField(
-            label: 'パスワード入力してください',
-            hint: '',
+            isPassword: true,
+            hint: "",
             onChanged: (password) {},
           ),
-          NeumorphicButton(
-            child: Text(
-              'ログイン',
-              style: TextStyle(
-                color: Colors.grey.shade700,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            onPressed: () {
-              print('ログイン');
-            },
+          NeumorphicCustomButton(
+            text: "ログイン",
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'アカウントをお持ちでない場合は',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                NeumorphicTextForTextField(
+                  text: "アカウントをお持ちでない場合は",
+                  color: Colors.black54,
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  print('アカウント作成画面に遷移');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateAccountScreen()),
-                  );
-                },
-                child: Text(
-                  'アカウント作成',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () {
+                    print('アカウント作成画面に遷移');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreateAccountScreen()),
+                    );
+                  },
+                  child: NeumorphicTextForTextField(
+                    text: "アカウント作成",
                     color: Colors.tealAccent.shade700,
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           )
         ],
       ),
