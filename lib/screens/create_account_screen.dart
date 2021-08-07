@@ -7,9 +7,12 @@ class CreateAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeumorphicApp(
-      home: NeumorphicButton(
-        child: NeumorphicText('test'),
-      ),
-    );
+        home: Column(
+      children: [
+        Image(
+          image: AssetImage("assets/user.png"),
+        ),
+      ],
+    ));
   }
 }
