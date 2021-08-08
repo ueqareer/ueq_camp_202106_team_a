@@ -5,6 +5,7 @@ import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_multi_line_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
+import 'package:cordinate_sns_app/screens/select_how_to_registrate_clothes_screen.dart';
 
 class CreateRecuitmentOfCoordination extends StatelessWidget {
   const CreateRecuitmentOfCoordination({Key? key}) : super(key: key);
@@ -77,6 +78,13 @@ class CreateRecuitmentOfCoordination extends StatelessWidget {
                     color: Colors.black,
                     onPressed: () {
                       print("募集");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SelectHowToRegistrateClothesScreen(),
+                        ),
+                      );
                     },
                   ),
                 ),
