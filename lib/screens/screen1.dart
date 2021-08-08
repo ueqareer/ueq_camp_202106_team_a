@@ -1,6 +1,8 @@
+import 'package:cordinate_sns_app/screens/create-recuitment-of-coordination.dart';
 import 'package:cordinate_sns_app/screens/create_account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_text_for_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
@@ -8,17 +10,21 @@ import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
 class Screen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Function login = () {
+      print("ログイン");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CreateRecuitmentOfCoordination(),
+        ),
+      );
+    };
+
     return SafeArea(
       child: Scaffold(
-        appBar: NeumorphicAppBar(
-          title: NeumorphicText(
-            "Login Page",
-            style: NeumorphicStyle(color: Colors.black),
-            textStyle: NeumorphicTextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30.0,
-            ),
-          ),
+        appBar: NeumorphicCustomAppBar(
+          title: "Login Page",
+          fontSize: 30.0,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +50,8 @@ class Screen1 extends StatelessWidget {
             ),
             NeumorphicCustomButton(
               text: "ログイン",
+              color: Colors.black54,
+              onPressed: login,
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),

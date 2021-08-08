@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:cordinate_sns_app/screens/create-recuitment-of-coordination.dart';
 
 class NeumorphicCustomButton extends StatelessWidget {
   String text;
+  Color color;
+  Function onPressed;
 
-  NeumorphicCustomButton({required this.text});
+  NeumorphicCustomButton(
+      {required this.text, required this.color, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +19,10 @@ class NeumorphicCustomButton extends StatelessWidget {
         child: NeumorphicText(
           text,
           textStyle: NeumorphicTextStyle(fontWeight: FontWeight.bold),
-          style: NeumorphicStyle(color: Colors.black54),
+          style: NeumorphicStyle(color: this.color),
         ),
         onPressed: () {
-          print(text);
+          this.onPressed();
         },
       ),
     );

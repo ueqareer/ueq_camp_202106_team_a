@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_text_for_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
 
 class CreateAccountScreen extends StatelessWidget {
-  const CreateAccountScreen({Key? key}) : super(key: key);
+  Function createAccount = () {
+    print("アカウント作成");
+  };
 
   @override
   Widget build(BuildContext context) {
     return NeumorphicApp(
         home: SafeArea(
       child: Scaffold(
-        appBar: NeumorphicAppBar(
-          title: NeumorphicText(
-            "Create Account Page",
-            style: NeumorphicStyle(color: Colors.black),
-            textStyle: NeumorphicTextStyle(
-                fontWeight: FontWeight.bold, fontSize: 30.0),
-          ),
+        appBar: NeumorphicCustomAppBar(
+          title: "Create Account Page",
+          fontSize: 30.0,
         ),
         body: Center(
           child: Column(
@@ -84,7 +83,11 @@ class CreateAccountScreen extends StatelessWidget {
                 hint: "",
                 onChanged: (reconfirmPassword) {},
               ),
-              NeumorphicCustomButton(text: "アカウント作成"),
+              NeumorphicCustomButton(
+                text: "アカウント作成",
+                color: Colors.black54,
+                onPressed: createAccount,
+              ),
             ],
           ),
         ),
