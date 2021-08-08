@@ -4,6 +4,8 @@ import 'screens/screen1.dart';
 import 'screens/screen2.dart';
 import 'screens/screen3.dart';
 import 'screens/screen4.dart';
+import 'screens/screen5.dart';
+import 'screens/screen6.dart';
 
 void main() {
   runApp(MyApp());
@@ -93,6 +95,26 @@ class _MyHomePageState extends State<MyHomePage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => Screen4(),
+                        ));
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.pink,
+                  heroTag: 'screen5',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Screen5(),
+                        ));
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.black,
+                  heroTag: 'screen6',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Screen6(),
                         ));
                   }),
             ],

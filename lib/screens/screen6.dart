@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
 
-class Screen3 extends StatelessWidget {
+class Screen6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicAppBar(
           title: NeumorphicText(
-            "Home-layout",
+            "Coordinate App",
             textStyle: NeumorphicTextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30.0,
@@ -50,24 +50,6 @@ Widget _buildVerticalItem(BuildContext context, int verticalIndex) {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 200,
-              height: 50,
-              // color: Colors.white70,
-              margin: EdgeInsets.fromLTRB(5, 20, 20, 20),
-              child: ListTile(
-                leading:NeumorphicIcon(
-                  Icons.person,
-                  size: 45,
-                ),
-                title: Text("User Name",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black
-                  ),
-                ),
-              ),
-            ),
             _buildHorizontalItem(context, verticalIndex),
           ],
         ),
@@ -75,7 +57,6 @@ Widget _buildVerticalItem(BuildContext context, int verticalIndex) {
     ),
   );
 }
-
 
 Widget _buildHorizontalItem(BuildContext context, int verticalIndex) {
   return SizedBox(

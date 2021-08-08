@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
 
-class Screen3 extends StatelessWidget {
+class Screen5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicAppBar(
           title: NeumorphicText(
-            "Home-layout",
+            "Coordinate App",
             textStyle: NeumorphicTextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30.0,
@@ -45,9 +45,8 @@ Widget _buildVerticalItem(BuildContext context, int verticalIndex) {
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: SizedBox(
-        height: 320,
+        height: 200,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
@@ -68,13 +67,19 @@ Widget _buildVerticalItem(BuildContext context, int verticalIndex) {
                 ),
               ),
             ),
-            _buildHorizontalItem(context, verticalIndex),
+            Container(
+              padding: EdgeInsets.all(12),
+              // 背景色
+              child: Text('気になっている人とのデートですが何を着ていけばいいか全然わからないので誰かコーディネートお願いします'),
+            )
           ],
         ),
       ),
     ),
   );
 }
+
+
 
 
 Widget _buildHorizontalItem(BuildContext context, int verticalIndex) {
