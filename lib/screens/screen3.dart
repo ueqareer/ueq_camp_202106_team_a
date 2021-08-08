@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 
 class Screen3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: NeumorphicAppBar(
-          title: NeumorphicText(
-            "Home-layout",
-            textStyle: NeumorphicTextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30.0,
-            ),
-            style: NeumorphicStyle(
-              color: Colors.black,
-            ),
-          ),
+        appBar: NeumorphicCustomAppBar(
+          title: "Home-layout",
+          fontSize: 30.0,
         ),
         body: ListView.builder(
           padding: const EdgeInsets.symmetric(vertical: 16),
