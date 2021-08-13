@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:cordinate_sns_app/screens/create-recuitment-of-coordination.dart';
 
 class NeumorphicCustomButton extends StatelessWidget {
   String text;

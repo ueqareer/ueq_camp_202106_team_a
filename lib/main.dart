@@ -6,8 +6,11 @@ import 'screens/screen3.dart';
 import 'screens/screen4.dart';
 import 'screens/screen5.dart';
 import 'screens/screen6.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
