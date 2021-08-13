@@ -1,0 +1,4 @@
+com/example/cordinate_sns_app/BuildConfig.java
+ com.example.cordinate_sns_app.BuildConfig
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
