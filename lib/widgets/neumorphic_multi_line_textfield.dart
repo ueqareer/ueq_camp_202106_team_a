@@ -37,6 +37,7 @@ class _NeumorphicMultiLineTextFieldState
           child: SizedBox(
             height: 90,
             child: TextField(
+              textInputAction: TextInputAction.done,
               keyboardType: TextInputType.multiline,
               maxLines: 5,
               onChanged: (value) {
