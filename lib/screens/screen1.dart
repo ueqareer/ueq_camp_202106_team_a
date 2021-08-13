@@ -6,19 +6,40 @@ import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_text_for_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Screen1 extends StatelessWidget {
+class Screen1 extends StatefulWidget {
+  @override
+  _Screen1State createState() => _Screen1State();
+}
+
+class _Screen1State extends State<Screen1> {
+  String _email = "";
+  String _password = "";
+
   @override
   Widget build(BuildContext context) {
-    Function login = () {
-      print("ログイン");
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CreateRecuitmentOfCoordination(),
-        ),
-      );
-    };
+    void login(String email, String password) async {
+      print("Login");
+      FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+      try {
+        await _firebaseAuth.signInWithEmailAndPassword(
+            email: email, password: password);
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CreateRecuitmentOfCoordination(),
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
+      }
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -31,13 +52,15 @@ class Screen1 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             NeumorphicTextForTextField(
-              text: 'ユーザ名を入力してください',
+              text: 'Emailアドレスを入力してください',
               color: Colors.black54,
             ),
             NeumorphicTextField(
               isPassword: false,
               hint: "",
-              onChanged: (lastName) {},
+              onChanged: (email) {
+                this._email = email;
+              },
             ),
             NeumorphicTextForTextField(
               text: 'パスワード入力してください',
@@ -46,12 +69,17 @@ class Screen1 extends StatelessWidget {
             NeumorphicTextField(
               isPassword: true,
               hint: "",
-              onChanged: (password) {},
+              onChanged: (password) {
+                this._password = password;
+              },
             ),
             NeumorphicCustomButton(
               text: "ログイン",
               color: Colors.black54,
-              onPressed: login,
+              onPressed: () => login(
+                this._email,
+                this._password,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
