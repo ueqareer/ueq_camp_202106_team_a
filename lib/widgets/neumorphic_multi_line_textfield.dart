@@ -3,10 +3,11 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class NeumorphicMultiLineTextField extends StatefulWidget {
   String hint;
-
   final ValueChanged<String> onChanged;
+  TextEditingController controller;
 
-  NeumorphicMultiLineTextField({required this.hint, required this.onChanged});
+  NeumorphicMultiLineTextField(
+      {required this.hint, required this.onChanged, required this.controller});
 
   @override
   _NeumorphicMultiLineTextFieldState createState() =>
@@ -15,11 +16,8 @@ class NeumorphicMultiLineTextField extends StatefulWidget {
 
 class _NeumorphicMultiLineTextFieldState
     extends State<NeumorphicMultiLineTextField> {
-  late TextEditingController _controller;
-
   @override
   void initState() {
-    _controller = TextEditingController(text: widget.hint);
     super.initState();
   }
 
@@ -37,13 +35,10 @@ class _NeumorphicMultiLineTextFieldState
           child: SizedBox(
             height: 90,
             child: TextField(
-              textInputAction: TextInputAction.done,
               keyboardType: TextInputType.multiline,
               maxLines: 5,
-              onChanged: (value) {
-                print(value);
-              },
-              controller: _controller,
+              onChanged: this.widget.onChanged,
+              controller: this.widget.controller,
               decoration: InputDecoration.collapsed(hintText: this.widget.hint),
             ),
           ),
