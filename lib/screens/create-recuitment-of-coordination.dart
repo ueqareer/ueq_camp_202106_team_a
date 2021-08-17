@@ -122,7 +122,9 @@ class _CreateRecuitmentOfCoordinationState
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      SelectHowToRegistrateClothesScreen(),
+                                      SelectHowToRegistrateClothesScreen(
+                                    clothingCategory: "shoes",
+                                  ),
                                 ),
                               );
                             },

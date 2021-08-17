@@ -64,8 +64,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     }
     try {
       final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
-      final TaskSnapshot storedImage =
-          await _firebaseStorage.ref(uid).child('profileImage').putFile(file);
+      final TaskSnapshot storedImage = await _firebaseStorage
+          .ref(uid)
+          .child('profileImage.jpeg')
+          .putFile(file);
       await downloadImageFromFireStorage(storedImage);
     } catch (e) {
       print('Failed to upload profile image to FireStorage.');
