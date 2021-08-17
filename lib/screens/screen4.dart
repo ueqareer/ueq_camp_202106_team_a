@@ -1,4 +1,6 @@
 import 'package:cordinate_sns_app/screens/create-recuitment-of-coordination.dart';
+import 'package:cordinate_sns_app/screens/screen2.dart';
+import 'package:cordinate_sns_app/screens/screen6.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
@@ -25,6 +27,12 @@ class Screen4 extends StatelessWidget {
                 ),
                 onTap: () {
                   print("select coordination");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Screen6(),
+                    ),
+                  );
                 },
               ),
               GestureDetector(
@@ -34,6 +42,12 @@ class Screen4 extends StatelessWidget {
                 ),
                 onTap: () {
                   print("select clothes");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Screen2(),
+                    ),
+                  );
                 },
               ),
             ],
