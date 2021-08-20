@@ -1,3 +1,4 @@
+import 'package:cordinate_sns_app/screens/selecting_clothes_screen.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_text_for_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -120,10 +121,15 @@ class _CreateRecuitmentOfCoordinationState
                             onTap: () {
                               Navigator.push(
                                 context,
+                                // MaterialPageRoute(
+                                //   builder: (context) =>
+                                //       SelectHowToRegistrateClothesScreen(
+                                //     clothingCategory: "outer",
+                                //   ),
+                                // ),
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      SelectHowToRegistrateClothesScreen(
-                                    clothingCategory: "shoes",
+                                  builder: (context) => SelectingClothesScreen(
+                                    clothingCategory: 'outer',
                                   ),
                                 ),
                               );

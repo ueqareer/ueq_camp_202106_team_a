@@ -7,7 +7,12 @@ import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_card.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
 
-class Screen4 extends StatelessWidget {
+class Screen4 extends StatefulWidget {
+  @override
+  _Screen4State createState() => _Screen4State();
+}
+
+class _Screen4State extends State<Screen4> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -18,7 +18,7 @@ class Screen3 extends StatelessWidget {
         ),
         floatingActionButton: NeumorphicFloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: (){},
+          onPressed: () {},
         ),
         bottomNavigationBar: NeumorphicBottomNavigation(),
       ),
@@ -49,15 +49,13 @@ Widget _buildVerticalItem(BuildContext context, int verticalIndex) {
               // color: Colors.white70,
               margin: EdgeInsets.fromLTRB(5, 20, 20, 20),
               child: ListTile(
-                leading:NeumorphicIcon(
+                leading: NeumorphicIcon(
                   Icons.person,
                   size: 45,
                 ),
-                title: Text("User Name",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black
-                  ),
+                title: Text(
+                  "User Name",
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
             ),
@@ -68,7 +66,6 @@ Widget _buildVerticalItem(BuildContext context, int verticalIndex) {
     ),
   );
 }
-
 
 Widget _buildHorizontalItem(BuildContext context, int verticalIndex) {
   return SizedBox(
@@ -83,7 +80,7 @@ Widget _buildHorizontalItem(BuildContext context, int verticalIndex) {
 
 Widget _buildHorizontalView(
     BuildContext context, int verticalIndex, int horizontalIndex) {
-  final imageUrl =  'https://source.unsplash.com/random';
+  final imageUrl = 'https://source.unsplash.com/random';
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8),
     child: Card(
@@ -91,5 +88,3 @@ Widget _buildHorizontalView(
     ),
   );
 }
-
-
