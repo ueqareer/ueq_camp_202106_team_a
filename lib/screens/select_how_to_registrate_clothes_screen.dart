@@ -133,6 +133,7 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
                                 uid, this.clothingCategory);
                             await postClothesDataToFirestore(
                                 this.clothingCategory);
+                            Navigator.pop(context);
                           },
                         ),
                         GestureDetector(
@@ -151,6 +152,7 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
                                 uid, this.clothingCategory);
                             await postClothesDataToFirestore(
                                 this.clothingCategory);
+                            Navigator.pop(context);
                           },
                         ),
                       ],
