@@ -137,91 +137,88 @@ class _CreateRecruitmentOfCoordinationState
   @override
   Widget build(BuildContext context) {
     final bottomSpace = MediaQuery.of(context).viewInsets.bottom;
-    return NeumorphicApp(
-      home: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: SafeArea(
-          child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: NeumorphicCustomAppBar(
-              title: "Coordinate App",
-              fontSize: 30.0,
-            ),
-            body: SingleChildScrollView(
-              reverse: true,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: bottomSpace),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      NeumorphicTextForTextField(
-                        text: "コーディネート募集するためのメッセージを入力",
-                        color: Colors.black,
-                      ),
-                      NeumorphicMultiLineTextField(
-                        hint: "",
-                        onChanged: (recruitmentMessage) {
-                          this.recruitmentMessage = recruitmentMessage;
-                        },
-                        controller: this._controllerForRecruitment,
-                      ),
-                      NeumorphicTextForTextField(
-                          text: "コーディネートを着る場面を入力", color: Colors.black),
-                      NeumorphicMultiLineTextField(
-                        hint: "",
-                        onChanged: (contentsOfUsageScene) {
-                          this.usageSceneMessage = contentsOfUsageScene;
-                        },
-                        controller: this._controllerForUsageScene,
-                      ),
-                      NeumorphicTextForTextField(
-                        text: "コーディネートで使用したい服がある場合は選択",
-                        color: Colors.black,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          height: 120,
-                          width: 120,
-                          child: GestureDetector(
-                            onTap: () async {
-                              final clothingImageUrl = await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      SelectClothesCategoryForChoosingClothesScreen(),
-                                ),
-                              );
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: NeumorphicCustomAppBar(
+            title: "Coordinate App",
+            fontSize: 30.0,
+          ),
+          body: SingleChildScrollView(
+            reverse: true,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: bottomSpace),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    NeumorphicTextForTextField(
+                      text: "コーディネート募集するためのメッセージを入力",
+                      color: Colors.black,
+                    ),
+                    NeumorphicMultiLineTextField(
+                      hint: "",
+                      onChanged: (recruitmentMessage) {
+                        this.recruitmentMessage = recruitmentMessage;
+                      },
+                      controller: this._controllerForRecruitment,
+                    ),
+                    NeumorphicTextForTextField(
+                        text: "コーディネートを着る場面を入力", color: Colors.black),
+                    NeumorphicMultiLineTextField(
+                      hint: "",
+                      onChanged: (contentsOfUsageScene) {
+                        this.usageSceneMessage = contentsOfUsageScene;
+                      },
+                      controller: this._controllerForUsageScene,
+                    ),
+                    NeumorphicTextForTextField(
+                      text: "コーディネートで使用したい服がある場合は選択",
+                      color: Colors.black,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 120,
+                        width: 120,
+                        child: GestureDetector(
+                          onTap: () async {
+                            final clothingImageUrl = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    SelectClothesCategoryForChoosingClothesScreen(),
+                              ),
+                            );
 
-                              setState(() {
-                                this.clothingImageUrl = clothingImageUrl;
-                              });
-                            },
-                            child: switchClothesImages(this.clothingImageUrl),
-                          ),
+                            setState(() {
+                              this.clothingImageUrl = clothingImageUrl;
+                            });
+                          },
+                          child: switchClothesImages(this.clothingImageUrl),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: NeumorphicCustomButton(
-                          text: "募集",
-                          color: Colors.black,
-                          onPressed: () => postRecruitmentDataToFirestore(
-                            this.recruitmentMessage,
-                            this.usageSceneMessage,
-                            this.clothingImageUrl,
-                            this._controllerForRecruitment,
-                            this._controllerForUsageScene,
-                          ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: NeumorphicCustomButton(
+                        text: "募集",
+                        color: Colors.black,
+                        onPressed: () => postRecruitmentDataToFirestore(
+                          this.recruitmentMessage,
+                          this.usageSceneMessage,
+                          this.clothingImageUrl,
+                          this._controllerForRecruitment,
+                          this._controllerForUsageScene,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            bottomNavigationBar: NeumorphicBottomNavigation(),
           ),
         ),
       ),

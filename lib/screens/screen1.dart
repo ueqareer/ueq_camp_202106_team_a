@@ -44,7 +44,7 @@ class _Screen1State extends State<Screen1> {
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: "Login Page",
+          title: "Login",
           fontSize: 30.0,
         ),
         body: Column(
