@@ -1,4 +1,4 @@
-import 'package:cordinate_sns_app/screens/create-recuitment-of-coordination.dart';
+import 'package:cordinate_sns_app/screens/create-recruitment-of-coordination.dart';
 import 'package:cordinate_sns_app/screens/create_account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -29,7 +29,7 @@ class _Screen1State extends State<Screen1> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CreateRecuitmentOfCoordination(),
+            builder: (context) => CreateRecruitmentOfCoordination(),
           ),
         );
       } on FirebaseAuthException catch (e) {

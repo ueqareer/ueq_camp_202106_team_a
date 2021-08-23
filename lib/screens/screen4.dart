@@ -1,4 +1,4 @@
-import 'package:cordinate_sns_app/screens/create-recuitment-of-coordination.dart';
+import 'package:cordinate_sns_app/screens/create-recruitment-of-coordination.dart';
 import 'package:cordinate_sns_app/screens/screen2.dart';
 import 'package:cordinate_sns_app/screens/screen6.dart';
 import 'package:flutter/material.dart';
