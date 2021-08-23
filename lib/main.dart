@@ -1,3 +1,4 @@
+import 'package:cordinate_sns_app/screens/select_coordination_for_other_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'screens/screen1.dart';
@@ -54,8 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Wrap(
             children: <Widget>[
               FloatingActionButton(
                 backgroundColor: Colors.red,
@@ -118,6 +118,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => Screen6(),
+                        ));
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.orange,
+                  heroTag: 'screen7',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SelectCoordinationForOtherUserScreen(
+                            uid: "7V71FXHkyQVW7BAOCdBvxCI1WPn1",
+                          ),
                         ));
                   }),
             ],
