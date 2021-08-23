@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_card.dart';
+
 
 class Screen2 extends StatelessWidget {
   @override
@@ -132,6 +134,8 @@ class Screen2 extends StatelessWidget {
           ),
         ),
       ]),
+      bottomNavigationBar: NeumorphicBottomNavigation(),
     );
   }
 }
+
