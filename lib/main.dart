@@ -1,4 +1,5 @@
 import 'package:cordinate_sns_app/screens/select_coordination_for_other_user_screen.dart';
+import 'package:cordinate_sns_app/screens/select_my_coordination_screen.dart';
 import 'package:cordinate_sns_app/screens/selecting_clothes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -136,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   }),
               FloatingActionButton(
                   backgroundColor: Colors.deepPurple,
-                  heroTag: 'screen7',
+                  heroTag: 'screen8',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -144,6 +145,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (context) => SelectingClothesScreen(
                           clothingCategory: "jacket-and-outer",
                         ),
+                      ),
+                    );
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.lightBlueAccent,
+                  heroTag: 'screen9',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SelectMyCoordinationScreen(
+                            uid: "7V71FXHkyQVW7BAOCdBvxCI1WPn1"),
                       ),
                     );
                   }),
