@@ -192,11 +192,6 @@ class _CreateRecruitmentOfCoordinationState
                                   builder: (context) =>
                                       SelectClothesCategoryForChoosingClothesScreen(),
                                 ),
-                                // MaterialPageRoute(
-                                //   builder: (context) => SelectingClothesScreen(
-                                //     clothingCategory: "jacket-and-outer",
-                                //   ),
-                                // ),
                               );
 
                               setState(() {
