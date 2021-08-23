@@ -48,7 +48,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           FirebaseFirestore.instance.collection('users');
       return _users
           .doc(uid)
-          .set({'userName': userName, "profileImageUrl": this._profileImageUrl})
+          .set({
+            'uid': uid,
+            'userName': userName,
+            "profileImageUrl": this._profileImageUrl
+          })
           .then((value) => print("Succeed to add user info to Firestore."))
           .catchError(
               (error) => print('Failed to add user info to Firestore.：$error'));

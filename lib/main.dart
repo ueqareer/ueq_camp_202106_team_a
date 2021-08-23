@@ -1,4 +1,5 @@
 import 'package:cordinate_sns_app/screens/select_coordination_for_other_user_screen.dart';
+import 'package:cordinate_sns_app/screens/selecting_clothes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'screens/screen1.dart';
@@ -132,6 +133,19 @@ class _MyHomePageState extends State<MyHomePage> {
                             uid: "7V71FXHkyQVW7BAOCdBvxCI1WPn1",
                           ),
                         ));
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.deepPurple,
+                  heroTag: 'screen7',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SelectingClothesScreen(
+                          clothingCategory: "jacket-and-outer",
+                        ),
+                      ),
+                    );
                   }),
             ],
           ),
