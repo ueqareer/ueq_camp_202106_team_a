@@ -90,79 +90,76 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: NeumorphicCustomAppBar(
-            title: "Coordinate App",
-            fontSize: 30.0,
-          ),
-          body: Center(
-            child: SizedBox(
-              height: 300,
-              width: 300,
-              child: Neumorphic(
-                style: NeumorphicStyle(
-                  shape: NeumorphicShape.flat,
-                  boxShape: NeumorphicBoxShape.rect(),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    NeumorphicTextForHeading(
-                      text: "服の登録方法を選択",
-                      fontSize: 20.0,
-                      color: Colors.black,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          child: ColumnContainingImageAndText(
-                            imagePath: "images/camera.png",
-                            text: "撮影して登録",
-                            imageHeight: 90.0,
-                            imageWidth: 90.0,
-                            fontSize: 15.0,
-                          ),
-                          onTap: () async {
-                            print("撮影して登録");
-                            String uid = getUidOfCurrentUser();
-                            await _getImageFromCamera();
-                            await _uploadClothesImageToFireStorage(
-                                uid, this.clothingCategory);
-                            await postClothesDataToFirestore(
-                                this.clothingCategory);
-                            Navigator.pop(context);
-                          },
+    return SafeArea(
+      child: Scaffold(
+        appBar: NeumorphicCustomAppBar(
+          title: "Coordinate App",
+          fontSize: 30.0,
+        ),
+        body: Center(
+          child: SizedBox(
+            height: 300,
+            width: 300,
+            child: Neumorphic(
+              style: NeumorphicStyle(
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.rect(),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  NeumorphicTextForHeading(
+                    text: "服の登録方法を選択",
+                    fontSize: 20.0,
+                    color: Colors.black,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        child: ColumnContainingImageAndText(
+                          imagePath: "images/camera.png",
+                          text: "撮影して登録",
+                          imageHeight: 90.0,
+                          imageWidth: 90.0,
+                          fontSize: 15.0,
                         ),
-                        GestureDetector(
-                          child: ColumnContainingImageAndText(
-                            imagePath: "images/album.png",
-                            text: "ライブラリから登録",
-                            imageHeight: 90.0,
-                            imageWidth: 90.0,
-                            fontSize: 15.0,
-                          ),
-                          onTap: () async {
-                            print("ライブラリから選択");
-                            String uid = getUidOfCurrentUser();
-                            await _getImageFromGallery();
-                            await _uploadClothesImageToFireStorage(
-                                uid, this.clothingCategory);
-                            await postClothesDataToFirestore(
-                                this.clothingCategory);
-                            Navigator.pop(context);
-                          },
+                        onTap: () async {
+                          print("撮影して登録");
+                          String uid = getUidOfCurrentUser();
+                          await _getImageFromCamera();
+                          await _uploadClothesImageToFireStorage(
+                              uid, this.clothingCategory);
+                          await postClothesDataToFirestore(
+                              this.clothingCategory);
+                          Navigator.pop(context);
+                        },
+                      ),
+                      GestureDetector(
+                        child: ColumnContainingImageAndText(
+                          imagePath: "images/album.png",
+                          text: "ライブラリから登録",
+                          imageHeight: 90.0,
+                          imageWidth: 90.0,
+                          fontSize: 15.0,
                         ),
-                      ],
-                    )
-                  ],
-                ),
+                        onTap: () async {
+                          print("ライブラリから選択");
+                          String uid = getUidOfCurrentUser();
+                          await _getImageFromGallery();
+                          await _uploadClothesImageToFireStorage(
+                              uid, this.clothingCategory);
+                          await postClothesDataToFirestore(
+                              this.clothingCategory);
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
           ),
-          bottomNavigationBar: NeumorphicBottomNavigation(),
         ),
       ),
     );

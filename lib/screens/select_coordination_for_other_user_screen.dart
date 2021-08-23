@@ -144,186 +144,184 @@ class _SelectCoordinationForOtherUserScreenState
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: NeumorphicCustomAppBar(
-            title: 'Coordinate App',
-            fontSize: 30,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    children: [
-                      NeumorphicClothesCategoryCard(
-                        title: "ジャケット/アウター",
-                        category: "jacket-and-outer",
-                        images: displayImages(
-                          'images/leather-jacket.png',
-                          this.jacketAndOuterImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "jacket-and-outer",
-                          this.jacketAndOuterImageUrlList,
-                        ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: NeumorphicCustomAppBar(
+          title: 'Coordinate App',
+          fontSize: 30,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    NeumorphicClothesCategoryCard(
+                      title: "ジャケット/アウター",
+                      category: "jacket-and-outer",
+                      images: displayImages(
+                        'images/leather-jacket.png',
+                        this.jacketAndOuterImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "トップス",
-                        category: "tops",
-                        images: displayImages(
-                          "images/tshirt.png",
-                          this.topsImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "tops",
-                          this.topsImageUrlList,
-                        ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "jacket-and-outer",
+                        this.jacketAndOuterImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "パンツ",
-                        category: "pants",
-                        images: displayImages(
-                          'images/trousers.png',
-                          this.pantsImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "pants",
-                          this.pantsImageUrlList,
-                        ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "トップス",
+                      category: "tops",
+                      images: displayImages(
+                        "images/tshirt.png",
+                        this.topsImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "ワンピース/ドレス",
-                        category: "one-piece-and-dress",
-                        images: displayImages(
-                          'images/dress.png',
-                          this.onePieceAndDressImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "one-piece-and-dress",
-                          this.onePieceAndDressImageUrlList,
-                        ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "tops",
+                        this.topsImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "スカート",
-                        category: "skirt",
-                        images: displayImages(
-                          'images/skirt.png',
-                          this.skirtImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "skirt",
-                          this.skirtImageUrlList,
-                        ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "パンツ",
+                      category: "pants",
+                      images: displayImages(
+                        'images/trousers.png',
+                        this.pantsImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "ソックス",
-                        category: "socks",
-                        images: displayImages(
-                          'images/socks.png',
-                          this.socksImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "socks",
-                          this.socksImageUrlList,
-                        ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "pants",
+                        this.pantsImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "シューズ",
-                        category: "shoes",
-                        images: displayImages(
-                          'images/shoes.png',
-                          this.shoesImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "shoes",
-                          this.shoesImageUrlList,
-                        ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "ワンピース/ドレス",
+                      category: "one-piece-and-dress",
+                      images: displayImages(
+                        'images/dress.png',
+                        this.onePieceAndDressImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "帽子",
-                        category: "cap",
-                        images: displayImages(
-                          'images/cap.png',
-                          this.capImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "cap",
-                          this.capImageUrlList,
-                        ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "one-piece-and-dress",
+                        this.onePieceAndDressImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "アクセサリー",
-                        category: "accessories",
-                        images: displayImages(
-                          'images/bracelet.png',
-                          this.accessoriesImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "accessories",
-                          this.accessoriesImageUrlList,
-                        ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "スカート",
+                      category: "skirt",
+                      images: displayImages(
+                        'images/skirt.png',
+                        this.skirtImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "時計",
-                        category: "hand-watch",
-                        images: displayImages(
-                          'images/hand-watch.png',
-                          this.handWatchImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "hand-watch",
-                          this.handWatchImageUrlList,
-                        ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "skirt",
+                        this.skirtImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "眼鏡",
-                        category: "glasses",
-                        images: displayImages(
-                          'images/eyeglasses.png',
-                          this.glassesImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "glasses",
-                          this.glassesImageUrlList,
-                        ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "ソックス",
+                      category: "socks",
+                      images: displayImages(
+                        'images/socks.png',
+                        this.socksImageUrlList,
                       ),
-                      NeumorphicClothesCategoryCard(
-                        title: "バッグ",
-                        category: "bag",
-                        images: displayImages(
-                          'images/handbag.png',
-                          this.bagImageUrlList,
-                        ),
-                        onPressed: () => screenTransition(
-                          widget.uid,
-                          "bag",
-                          this.bagImageUrlList,
-                        ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "socks",
+                        this.socksImageUrlList,
                       ),
-                    ],
-                  ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "シューズ",
+                      category: "shoes",
+                      images: displayImages(
+                        'images/shoes.png',
+                        this.shoesImageUrlList,
+                      ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "shoes",
+                        this.shoesImageUrlList,
+                      ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "帽子",
+                      category: "cap",
+                      images: displayImages(
+                        'images/cap.png',
+                        this.capImageUrlList,
+                      ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "cap",
+                        this.capImageUrlList,
+                      ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "アクセサリー",
+                      category: "accessories",
+                      images: displayImages(
+                        'images/bracelet.png',
+                        this.accessoriesImageUrlList,
+                      ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "accessories",
+                        this.accessoriesImageUrlList,
+                      ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "時計",
+                      category: "hand-watch",
+                      images: displayImages(
+                        'images/hand-watch.png',
+                        this.handWatchImageUrlList,
+                      ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "hand-watch",
+                        this.handWatchImageUrlList,
+                      ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "眼鏡",
+                      category: "glasses",
+                      images: displayImages(
+                        'images/eyeglasses.png',
+                        this.glassesImageUrlList,
+                      ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "glasses",
+                        this.glassesImageUrlList,
+                      ),
+                    ),
+                    NeumorphicClothesCategoryCard(
+                      title: "バッグ",
+                      category: "bag",
+                      images: displayImages(
+                        'images/handbag.png',
+                        this.bagImageUrlList,
+                      ),
+                      onPressed: () => screenTransition(
+                        widget.uid,
+                        "bag",
+                        this.bagImageUrlList,
+                      ),
+                    ),
+                  ],
                 ),
-                NeumorphicCustomButton(
-                  text: "登録",
-                  color: Colors.black,
-                  onPressed: () => postCoordinationDataToFireStore(widget.uid),
-                )
-              ],
-            ),
+              ),
+              NeumorphicCustomButton(
+                text: "登録",
+                color: Colors.black,
+                onPressed: () => postCoordinationDataToFireStore(widget.uid),
+              )
+            ],
           ),
         ),
       ),

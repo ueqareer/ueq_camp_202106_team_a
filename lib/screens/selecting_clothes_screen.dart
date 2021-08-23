@@ -40,17 +40,15 @@ class _SelectingClothesScreenState extends State<SelectingClothesScreen> {
           ));
     }
 
-    return NeumorphicApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: NeumorphicCustomAppBar(
-            title: "Coordinate App",
-            fontSize: 30.0,
-          ),
-          body: buildClothesList(),
-          floatingActionButton: NeumorphicCustomFloatingActionButton(
-            onPressed: () => screenTransition,
-          ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: NeumorphicCustomAppBar(
+          title: "Coordinate App",
+          fontSize: 30.0,
+        ),
+        body: buildClothesList(),
+        floatingActionButton: NeumorphicCustomFloatingActionButton(
+          onPressed: () => screenTransition,
         ),
       ),
     );

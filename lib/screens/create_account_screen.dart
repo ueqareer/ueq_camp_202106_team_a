@@ -139,7 +139,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: NeumorphicCustomAppBar(
-          title: "Create Account Page",
+          title: "Create Account",
           fontSize: 30.0,
         ),
         body: SingleChildScrollView(
