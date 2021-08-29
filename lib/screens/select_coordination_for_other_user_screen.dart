@@ -82,14 +82,14 @@ class _SelectCoordinationForOtherUserScreenState
 
     if (coordinationList.isNotEmpty) {
       print('登録');
+
       CollectionReference _coordination =
           FirebaseFirestore.instance.collection('coordination');
 
       _coordination
-          .doc(uid)
-          .collection(uid)
           .doc()
           .set({
+            'uid': uid,
             'coordination': coordinationList,
             'createdAt': Timestamp.fromDate(DateTime.now()),
           })
