@@ -1,3 +1,4 @@
+import 'package:cordinate_sns_app/screens/home_screen.dart';
 import 'package:cordinate_sns_app/screens/select_coordination_for_other_user_screen.dart';
 import 'package:cordinate_sns_app/screens/select_my_coordination_screen.dart';
 import 'package:cordinate_sns_app/screens/selecting_clothes_screen.dart';
@@ -131,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         MaterialPageRoute(
                           builder: (context) =>
                               SelectCoordinationForOtherUserScreen(
-                            uid: "7V71FXHkyQVW7BAOCdBvxCI1WPn1",
+                            uid: "E2hYdU6wWddJKbPmCBHYNkSRlpG3",
                           ),
                         ));
                   }),
@@ -156,7 +157,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => SelectMyCoordinationScreen(
-                            uid: "7V71FXHkyQVW7BAOCdBvxCI1WPn1"),
+                            uid: "E2hYdU6wWddJKbPmCBHYNkSRlpG3"),
+                      ),
+                    );
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.greenAccent,
+                  heroTag: 'screen10',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
                       ),
                     );
                   }),

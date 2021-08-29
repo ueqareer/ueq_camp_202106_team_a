@@ -60,8 +60,8 @@ class _SelectingClothesScreenState extends State<SelectingClothesScreen> {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection("clothes")
-          .doc("$uid")
-          .collection("$clothingCategory")
+          .doc(uid)
+          .collection(clothingCategory)
           .orderBy('createdAt', descending: true)
           .snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {

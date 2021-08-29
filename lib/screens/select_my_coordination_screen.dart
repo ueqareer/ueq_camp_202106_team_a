@@ -87,10 +87,9 @@ class _SelectMyCoordinationScreenState
           FirebaseFirestore.instance.collection('coordination');
 
       _coordination
-          .doc(uid)
-          .collection(uid)
           .doc()
           .set({
+            'uid': uid,
             'coordination': coordinationList,
             'createdAt': Timestamp.fromDate(DateTime.now()),
           })

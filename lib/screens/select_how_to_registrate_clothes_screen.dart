@@ -3,7 +3,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_text_for_heading.dart';
 import 'package:cordinate_sns_app/widgets/column_containing_image_and_text.dart';
-import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -22,7 +21,6 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
   Future _getImageFromCamera() async {
     final _pickedFile = await this._imagePicker.pickImage(
           source: ImageSource.camera,
-          imageQuality: 30,
         );
 
     if (_pickedFile != null) {
@@ -34,7 +32,6 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
   Future _getImageFromGallery() async {
     final _pickedFile = await this._imagePicker.pickImage(
           source: ImageSource.gallery,
-          imageQuality: 50,
         );
 
     if (_pickedFile != null) {
@@ -75,17 +72,20 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
     this._clothesImageUrl = downloadUrl;
   }
 
-  Future<void> postClothesDataToFirestore(String clothingCategory) async {
-    String uid = getUidOfCurrentUser();
-    CollectionReference _clothes = FirebaseFirestore.instance
-        .collection("clothes")
-        .doc("$uid")
-        .collection("$clothingCategory");
+  Future<void> postClothesDataToFirestore(
+      String uid, String clothingCategory) async {
+    await FirebaseFirestore.instance.collection("clothes").doc(uid).set({});
 
-    _clothes.doc().set({
-      "clothingImageUrl": _clothesImageUrl,
-      "createdAt": Timestamp.fromDate(DateTime.now()),
-    });
+    var docRef = FirebaseFirestore.instance.collection("clothes").doc(uid);
+
+    if (this._clothesImageUrl.isNotEmpty) {
+      await docRef.collection(clothingCategory).add({
+        "clothingImageUrl": _clothesImageUrl,
+        "createdAt": Timestamp.fromDate(DateTime.now()),
+      }).catchError((e) {
+        print('error：' + e);
+      });
+    }
   }
 
   @override
@@ -131,7 +131,7 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
                           await _uploadClothesImageToFireStorage(
                               uid, this.clothingCategory);
                           await postClothesDataToFirestore(
-                              this.clothingCategory);
+                              uid, this.clothingCategory);
                           Navigator.pop(context);
                         },
                       ),
@@ -150,8 +150,10 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
                           await _uploadClothesImageToFireStorage(
                               uid, this.clothingCategory);
                           await postClothesDataToFirestore(
-                              this.clothingCategory);
-                          Navigator.pop(context);
+                                  uid, this.clothingCategory)
+                              .then((value) {
+                            Navigator.pop(context);
+                          });
                         },
                       ),
                     ],
