@@ -1,7 +1,7 @@
-import 'package:cordinate_sns_app/screens/create-recruitment-of-coordination.dart';
-import 'package:cordinate_sns_app/screens/screen2.dart';
-import 'package:cordinate_sns_app/screens/screen6.dart';
 import 'package:flutter/material.dart';
+import 'package:cordinate_sns_app/screens/screen2.dart';
+import 'package:cordinate_sns_app/screens/list_of_my_coordination_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_card.dart';
@@ -13,6 +13,16 @@ class Screen4 extends StatefulWidget {
 }
 
 class _Screen4State extends State<Screen4> {
+  String getUidOfCurrentUser() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return "";
+    } else {
+      String uid = user.uid;
+      return uid;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,7 +37,7 @@ class _Screen4State extends State<Screen4> {
             children: [
               GestureDetector(
                 child: NeumorphicCard(
-                  imagePath: "images/coordination.png",
+                  imagePath: "images/add_coordination.png",
                   text: "コーディネート一覧",
                 ),
                 onTap: () {
@@ -35,7 +45,9 @@ class _Screen4State extends State<Screen4> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Screen6(),
+                      builder: (context) => ListOfMyCoordinationScreen(
+                        uid: getUidOfCurrentUser(),
+                      ),
                     ),
                   );
                 },

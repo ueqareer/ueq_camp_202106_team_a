@@ -1,4 +1,5 @@
 import 'package:cordinate_sns_app/screens/home_screen.dart';
+import 'package:cordinate_sns_app/screens/list_of_my_coordination_screen.dart';
 import 'package:cordinate_sns_app/screens/select_coordination_for_other_user_screen.dart';
 import 'package:cordinate_sns_app/screens/select_my_coordination_screen.dart';
 import 'package:cordinate_sns_app/screens/selecting_clothes_screen.dart';
