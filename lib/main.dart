@@ -1,5 +1,5 @@
 import 'package:cordinate_sns_app/screens/home_screen.dart';
-import 'package:cordinate_sns_app/screens/list_of_my_coordination_screen.dart';
+import 'package:cordinate_sns_app/screens/list_of_recruitment_of_coordination_screen.dart';
 import 'package:cordinate_sns_app/screens/select_coordination_for_other_user_screen.dart';
 import 'package:cordinate_sns_app/screens/select_my_coordination_screen.dart';
 import 'package:cordinate_sns_app/screens/selecting_clothes_screen.dart';
@@ -7,10 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'screens/screen1.dart';
 import 'screens/screen2.dart';
-import 'screens/screen3.dart';
 import 'screens/screen4.dart';
-import 'screens/screen5.dart';
-import 'screens/screen6.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -34,7 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         themeMode: ThemeMode.light,
         child: MyHomePage(
-          title: 'Cordinate Application',
+          title: 'Coordinect',
         ),
       ),
     );
@@ -71,8 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (context) => Screen1(),
                       ));
                 },
-                tooltip: 'Increment',
-                child: Icon(Icons.add),
               ),
               FloatingActionButton(
                   backgroundColor: Colors.blue,
@@ -85,16 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ));
                   }),
               FloatingActionButton(
-                  backgroundColor: Colors.yellow,
-                  heroTag: 'screen3',
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Screen3(),
-                        ));
-                  }),
-              FloatingActionButton(
                   backgroundColor: Colors.green,
                   heroTag: 'screen4',
                   onPressed: () {
@@ -102,26 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => Screen4(),
-                        ));
-                  }),
-              FloatingActionButton(
-                  backgroundColor: Colors.pink,
-                  heroTag: 'screen5',
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Screen5(),
-                        ));
-                  }),
-              FloatingActionButton(
-                  backgroundColor: Colors.black,
-                  heroTag: 'screen6',
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Screen6(),
                         ));
                   }),
               FloatingActionButton(
@@ -170,6 +135,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => HomeScreen(),
+                      ),
+                    );
+                  }),
+              FloatingActionButton(
+                  backgroundColor: Colors.grey,
+                  heroTag: 'screen11',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ListOfRecruitmentOfCoordinationScreen(),
                       ),
                     );
                   }),

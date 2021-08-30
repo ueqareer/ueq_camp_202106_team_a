@@ -41,7 +41,6 @@ class _Screen4State extends State<Screen4> {
                   text: "コーディネート一覧",
                 ),
                 onTap: () {
-                  print("select coordination");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -58,7 +57,6 @@ class _Screen4State extends State<Screen4> {
                   text: "服一覧",
                 ),
                 onTap: () {
-                  print("select clothes");
                   Navigator.push(
                     context,
                     MaterialPageRoute(

@@ -32,8 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     });
 
-    // print(userNameMap);
-
     return Future.value(userNameMap);
   }
 
@@ -50,8 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
         profileImageUrlMap[uid] = profileImageUrl;
       });
     });
-
-    // print(profileImageUrlMap);
 
     return Future.value(profileImageUrlMap);
   }
