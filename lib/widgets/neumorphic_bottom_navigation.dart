@@ -1,12 +1,17 @@
-import 'package:cordinate_sns_app/screens/screen4.dart';
-import 'package:cordinate_sns_app/screens/screen5.dart';
+import 'package:cordinate_sns_app/screens/home_screen.dart';
+import 'package:cordinate_sns_app/screens/list_of_recruitment_of_coordination_screen.dart';
+import 'package:cordinate_sns_app/screens/list_of_recruitment_of_coordination_screen.dart';
+import 'package:cordinate_sns_app/screens/select_coordination_or_clothes_screen.dart';
+import 'package:cordinate_sns_app/widgets/custom_material_page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/image_for_toggle.dart';
-import 'package:cordinate_sns_app/screens/screen3.dart';
 
 class NeumorphicBottomNavigation extends StatefulWidget {
-  const NeumorphicBottomNavigation({Key? key}) : super(key: key);
+  int selectedIndex;
+  String beforePageName;
+  NeumorphicBottomNavigation(
+      {required this.selectedIndex, required this.beforePageName});
 
   @override
   _NeumorphicBottomNavigationState createState() =>
@@ -15,29 +20,47 @@ class NeumorphicBottomNavigation extends StatefulWidget {
 
 class _NeumorphicBottomNavigationState
     extends State<NeumorphicBottomNavigation> {
-  int _selectedIndex = 0;
+  bool _isFirstClick = false;
 
   void screenTransition(int selectedIndex) {
-    if (selectedIndex == 0) {
-      Navigator.push(
+    if ((selectedIndex == 0) &&
+        (widget.selectedIndex == selectedIndex) &&
+        (widget.beforePageName != "home")) {
+      widget.beforePageName = "home";
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(
-          builder: (context) => Screen3(),
+        CustomMaterialPageRoute(
+          builder: (context) => HomeScreen(
+            beforePageName: widget.beforePageName,
+          ),
         ),
+        (_) => false,
       );
-    } else if (selectedIndex == 1) {
-      Navigator.push(
+    } else if ((selectedIndex == 1) &&
+        (widget.selectedIndex == selectedIndex) &&
+        (widget.beforePageName != "coordination or clothes")) {
+      widget.beforePageName = "coordination or clothes";
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(
-          builder: (context) => Screen4(),
+        CustomMaterialPageRoute(
+          builder: (context) => SelectCoordinationOrClothesScreen(
+            beforePageName: widget.beforePageName,
+          ),
         ),
+        (_) => false,
       );
-    } else {
-      Navigator.push(
+    } else if ((selectedIndex == 2) &&
+        (widget.selectedIndex == selectedIndex) &&
+        (widget.beforePageName != "list of recruitment")) {
+      widget.beforePageName = "list of recruitment";
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(
-          builder: (context) => Screen5(),
+        CustomMaterialPageRoute(
+          builder: (context) => ListOfRecruitmentOfCoordinationScreen(
+            beforePageName: widget.beforePageName,
+          ),
         ),
+        (_) => false,
       );
     }
   }
@@ -46,7 +69,7 @@ class _NeumorphicBottomNavigationState
   Widget build(BuildContext context) {
     return NeumorphicToggle(
       height: 50,
-      selectedIndex: _selectedIndex,
+      selectedIndex: widget.selectedIndex,
       displayForegroundOnlyIfSelected: true,
       thumb: Neumorphic(),
       children: [
@@ -77,9 +100,8 @@ class _NeumorphicBottomNavigationState
       ],
       onChanged: (value) {
         setState(() {
-          _selectedIndex = value;
-          print(_selectedIndex);
-          screenTransition(_selectedIndex);
+          widget.selectedIndex = value;
+          screenTransition(widget.selectedIndex);
         });
       },
     );

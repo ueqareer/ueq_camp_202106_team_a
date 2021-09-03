@@ -1,13 +1,11 @@
 import 'package:cordinate_sns_app/screens/select_clothes_category_for_choosing_clothes.dart';
-import 'package:cordinate_sns_app/screens/selecting_clothes_for_recuitment_screen.dart';
-import 'package:cordinate_sns_app/screens/selecting_clothes_screen.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_text_for_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_multi_line_textfield.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
-import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -46,6 +44,28 @@ class _CreateRecruitmentOfCoordinationState
     }
   }
 
+  Future<String> getUserNameFromFirestore() async {
+    String _uid = getUidOfCurrentUser();
+    String _userName = "";
+    CollectionReference _users = FirebaseFirestore.instance.collection("users");
+    await _users.doc(_uid).get().then((doc) {
+      _userName = doc.get('userName');
+    });
+
+    return Future.value(_userName);
+  }
+
+  Future<String> getProfileImageUrlFromFirestore() async {
+    String _uid = getUidOfCurrentUser();
+    String _profileImageUrl = "";
+    CollectionReference _users = FirebaseFirestore.instance.collection("users");
+    await _users.doc(_uid).get().then((doc) {
+      _profileImageUrl = doc.get('profileImageUrl');
+    });
+
+    return Future.value(_profileImageUrl);
+  }
+
   Future<void> postRecruitmentDataToFirestore(
       String recruitmentMessage,
       String usageSceneMessage,
@@ -56,14 +76,18 @@ class _CreateRecruitmentOfCoordinationState
       clothingImageUrl = "";
     }
     String uid = getUidOfCurrentUser();
+    String userName = await getUserNameFromFirestore();
+    String profileImageUrl = await getProfileImageUrlFromFirestore();
+
     CollectionReference _recruitment =
         FirebaseFirestore.instance.collection('recruitment');
     if (recruitmentMessage.isNotEmpty && usageSceneMessage.isNotEmpty) {
-      print("募集");
       _recruitment
           .doc()
           .set({
             'uid': uid,
+            'userName': userName,
+            'profileImageUrl': profileImageUrl,
             'createdAt': Timestamp.fromDate(DateTime.now()),
             "recruitmentMessage": recruitmentMessage,
             "usageSceneMessage": usageSceneMessage,
@@ -143,7 +167,8 @@ class _CreateRecruitmentOfCoordinationState
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: NeumorphicCustomAppBar(
-            title: "Coordinate App",
+            leading: NeumorphicLogoutButton(),
+            title: "Coordinect",
             fontSize: 30.0,
           ),
           body: SingleChildScrollView(

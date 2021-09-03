@@ -5,8 +5,10 @@ import 'package:cordinate_sns_app/widgets/custom_network_image.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_my_coordination_card.dart';
-import 'package:cordinate_sns_app/widgets/neumorphic_bottom_navigation.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class ListOfMyCoordinationScreen extends StatefulWidget {
   String uid;
@@ -20,69 +22,17 @@ class ListOfMyCoordinationScreen extends StatefulWidget {
 
 class _ListOfMyCoordinationScreenState
     extends State<ListOfMyCoordinationScreen> {
-  Future<Map<String, String>> getUserName() async {
-    var collection = FirebaseFirestore.instance.collection('users');
-
-    Map<String, String> userNameMap = {};
-
-    await collection.get().then((value) {
-      value.docs.forEach((element) {
-        var uid = element.get('uid');
-        var userName = element.get('userName');
-
-        userNameMap[uid] = userName;
-      });
-    });
-
-    return Future.value(userNameMap);
-  }
-
-  Future<Map<String, String>> getProfileImageUrl() async {
-    var collection = FirebaseFirestore.instance.collection('users');
-
-    Map<String, String> profileImageUrlMap = {};
-
-    await collection.get().then((value) {
-      value.docs.forEach((element) {
-        var uid = element.get('uid');
-        var profileImageUrl = element.get('profileImageUrl');
-
-        profileImageUrlMap[uid] = profileImageUrl;
-      });
-    });
-
-    return Future.value(profileImageUrlMap);
-  }
-
-  Future<List<List<dynamic>>> getCoordinateDataFromFirestore() async {
-    List<List<dynamic>> coordinationDimList = [];
-
-    var collection = FirebaseFirestore.instance.collection('coordination');
-    await collection
-        .orderBy('createdAt', descending: true)
-        .where('uid', isEqualTo: widget.uid)
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        List<dynamic> coordinationList = doc.get('coordination');
-        List<String> afterCastCoordinationList =
-            coordinationList.cast<String>();
-        coordinationDimList.add(afterCastCoordinationList);
-      });
-    });
-
-    return Future.value(coordinationDimList);
-  }
-
-  Future<List<NeumorphicMyCoordinationCard>> initVerticalList() async {
+  List<NeumorphicMyCoordinationCard> initVerticalList(
+    List<String> createdAtList,
+    List<List<dynamic>> coordinationDimList,
+  ) {
     List<NeumorphicMyCoordinationCard> neumorphicMyCoordinationCardList = [];
-
-    var coordinationDimList = await getCoordinateDataFromFirestore();
 
     for (int i = 0; i < coordinationDimList.length; i++) {
       List<Widget> images =
           initHorizontalList(i, coordinationDimList[i].cast<String>());
       NeumorphicMyCoordinationCard card = NeumorphicMyCoordinationCard(
+        createdAt: createdAtList[i],
         images: images,
       );
       neumorphicMyCoordinationCardList.add(card);
@@ -106,18 +56,31 @@ class _ListOfMyCoordinationScreenState
     return images;
   }
 
+  String convertFromDateTimeToString(DateTime createdAt) {
+    initializeDateFormatting("ja_JP");
+
+    var formatter = new DateFormat("yyyy/MM/dd HH:mm", "ja_JP");
+    String formatted = formatter.format(createdAt);
+    return formatted;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
+          leading: NeumorphicLogoutButton(),
           title: "Coordinect",
           fontSize: 30,
         ),
-        body: FutureBuilder(
-          future: initVerticalList(),
+        body: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection('coordination')
+              .orderBy('createdAt', descending: true)
+              .where('uid', isEqualTo: widget.uid)
+              .snapshots(),
           builder: (BuildContext context,
-              AsyncSnapshot<List<NeumorphicMyCoordinationCard>> snapshot) {
+              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
             if (snapshot.data == null) {
               return Center(
                 child: CircularProgressIndicator(),
@@ -129,8 +92,23 @@ class _ListOfMyCoordinationScreenState
                 child: CircularProgressIndicator(),
               );
             }
+
+            List<String> createdAtList = [];
+            List<List<dynamic>> coordinationDimList = [];
+            snapshot.data!.docs.forEach((doc) {
+              String createdAt =
+                  convertFromDateTimeToString(doc.get("createdAt").toDate());
+              createdAtList.add(createdAt);
+              List<String> coordinationList =
+                  doc.get('coordination').cast<String>();
+              coordinationDimList.add(coordinationList);
+            });
+
             return ListView(
-              children: snapshot.data!,
+              children: initVerticalList(
+                createdAtList,
+                coordinationDimList,
+              ),
             );
           },
         ),
@@ -167,7 +145,6 @@ class _ListOfMyCoordinationScreenState
             },
           ),
         ),
-        bottomSheet: NeumorphicBottomNavigation(),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
@@ -68,7 +69,6 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
   Future<void> downloadClothesImageUrlFromFireStorage(
       TaskSnapshot storedImage) async {
     final String downloadUrl = await storedImage.ref.getDownloadURL();
-    print("download url：$downloadUrl");
     this._clothesImageUrl = downloadUrl;
   }
 
@@ -93,7 +93,8 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: "Coordinate App",
+          leading: NeumorphicLogoutButton(),
+          title: "Coordinect",
           fontSize: 30.0,
         ),
         body: Center(
@@ -125,7 +126,6 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
                           fontSize: 15.0,
                         ),
                         onTap: () async {
-                          print("撮影して登録");
                           String uid = getUidOfCurrentUser();
                           await _getImageFromCamera();
                           await _uploadClothesImageToFireStorage(
@@ -144,7 +144,6 @@ class SelectHowToRegistrateClothesScreen extends StatelessWidget {
                           fontSize: 15.0,
                         ),
                         onTap: () async {
-                          print("ライブラリから選択");
                           String uid = getUidOfCurrentUser();
                           await _getImageFromGallery();
                           await _uploadClothesImageToFireStorage(

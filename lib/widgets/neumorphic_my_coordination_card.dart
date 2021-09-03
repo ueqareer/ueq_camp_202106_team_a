@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class NeumorphicMyCoordinationCard extends StatelessWidget {
+  String createdAt;
   List<Widget> images;
 
   NeumorphicMyCoordinationCard({
+    required this.createdAt,
     required this.images,
   });
 
@@ -22,11 +24,32 @@ class NeumorphicMyCoordinationCard extends StatelessWidget {
                 BorderRadius.circular(10),
               ),
             ),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: this.images,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        createdAt,
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: this.images,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
@@ -22,7 +23,8 @@ class _SelectClothesForOtherUserScreenState
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: 'Coordinate App',
+          leading: NeumorphicLogoutButton(),
+          title: 'Coordinect',
           fontSize: 30,
         ),
         body: buildClothesList(),
@@ -63,8 +65,6 @@ class _SelectClothesForOtherUserScreenState
                 ),
               ),
               onTap: () {
-                // int count = 0;
-                // Navigator.popUntil(context, (_) => count++ >= 2);
                 Navigator.pop(context, clothingImageUrl);
               },
             );

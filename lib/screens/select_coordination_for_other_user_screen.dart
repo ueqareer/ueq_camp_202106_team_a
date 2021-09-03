@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/screens/select_clothes_for_other_user_screen.dart';
@@ -81,8 +82,6 @@ class _SelectCoordinationForOtherUserScreenState
         this.bagImageUrlList;
 
     if (coordinationList.isNotEmpty) {
-      print('登録');
-
       CollectionReference _coordination =
           FirebaseFirestore.instance.collection('coordination');
 
@@ -147,7 +146,8 @@ class _SelectCoordinationForOtherUserScreenState
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: 'Coordinate App',
+          leading: NeumorphicLogoutButton(),
+          title: 'Coordinect',
           fontSize: 30,
         ),
         body: Padding(

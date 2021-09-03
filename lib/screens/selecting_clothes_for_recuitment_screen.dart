@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_card_from_url.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -32,7 +33,8 @@ class _SelectingClothesForRecruitmentScreenState
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: 'Coordinate App',
+          leading: NeumorphicLogoutButton(),
+          title: 'Coordinect',
           fontSize: 30,
         ),
         body: buildClothesList(),
@@ -73,8 +75,6 @@ class _SelectingClothesForRecruitmentScreenState
                 ),
               ),
               onTap: () {
-                // int count = 0;
-                // Navigator.popUntil(context, (_) => count++ >= 2);
                 Navigator.pop(context, clothingImageUrl);
               },
             );
