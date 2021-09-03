@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cordinate_sns_app/screens/select_my_clothes_screen.dart';
-import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:cordinate_sns_app/screens/select_clothes_for_other_user_screen.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_clothes_category_card.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_custom_button.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:cordinate_sns_app/widgets/custom_network_image.dart';
 
 class SelectMyCoordinationScreen extends StatefulWidget {
@@ -67,6 +68,38 @@ class _SelectMyCoordinationScreenState
     }
   }
 
+  String getUidOfCurrentUser() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return "";
+    } else {
+      String uid = user.uid;
+      return uid;
+    }
+  }
+
+  Future<String> getUserNameFromFirestore() async {
+    String _uid = getUidOfCurrentUser();
+    String _userName = "";
+    CollectionReference _users = FirebaseFirestore.instance.collection("users");
+    await _users.doc(_uid).get().then((doc) {
+      _userName = doc.get('userName');
+    });
+
+    return Future.value(_userName);
+  }
+
+  Future<String> getProfileImageUrlFromFirestore() async {
+    String _uid = getUidOfCurrentUser();
+    String _profileImageUrl = "";
+    CollectionReference _users = FirebaseFirestore.instance.collection("users");
+    await _users.doc(_uid).get().then((doc) {
+      _profileImageUrl = doc.get('profileImageUrl');
+    });
+
+    return Future.value(_profileImageUrl);
+  }
+
   Future<void> postCoordinationDataToFireStore(String uid) async {
     List<String> coordinationList = this.jacketAndOuterImageUrlList +
         this.topsImageUrlList +
@@ -81,8 +114,10 @@ class _SelectMyCoordinationScreenState
         this.glassesImageUrlList +
         this.bagImageUrlList;
 
+    String userName = await getUserNameFromFirestore();
+    String profileImageUrl = await getProfileImageUrlFromFirestore();
+
     if (coordinationList.isNotEmpty) {
-      print('登録');
       CollectionReference _coordination =
           FirebaseFirestore.instance.collection('coordination');
 
@@ -90,6 +125,8 @@ class _SelectMyCoordinationScreenState
           .doc()
           .set({
             'uid': uid,
+            'userName': userName,
+            'profileImageUrl': profileImageUrl,
             'coordination': coordinationList,
             'createdAt': Timestamp.fromDate(DateTime.now()),
           })
@@ -147,7 +184,8 @@ class _SelectMyCoordinationScreenState
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: 'Coordinate App',
+          leading: NeumorphicLogoutButton(),
+          title: 'Coordinect',
           fontSize: 30,
         ),
         body: Padding(

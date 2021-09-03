@@ -1,4 +1,5 @@
 import 'package:cordinate_sns_app/screens/select_how_to_registrate_clothes_screen.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -43,7 +44,8 @@ class _SelectingClothesScreenState extends State<SelectingClothesScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: "Coordinate App",
+          leading: NeumorphicLogoutButton(),
+          title: "Coordinect",
           fontSize: 30.0,
         ),
         body: buildClothesList(),
@@ -79,7 +81,6 @@ class _SelectingClothesScreenState extends State<SelectingClothesScreen> {
           itemBuilder: (BuildContext context, int index) {
             var clothingImageUrl =
                 snapshot.data!.docs[index].get('clothingImageUrl');
-            //print(clothingImageUrl);
             return Center(
               child: NeumorphicCardFromUrl(
                 imagePath: clothingImageUrl,

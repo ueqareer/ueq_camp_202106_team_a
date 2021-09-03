@@ -1,4 +1,5 @@
 import 'package:cordinate_sns_app/screens/selecting_clothes_for_recuitment_screen.dart';
+import 'package:cordinate_sns_app/widgets/neumorphic_logout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cordinate_sns_app/widgets/neumorphic_custom_appbar.dart';
@@ -10,7 +11,8 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: NeumorphicCustomAppBar(
-          title: "Coordinate App",
+          leading: NeumorphicLogoutButton(),
+          title: "Coordinect",
           fontSize: 30.0,
         ),
         body: Column(children: [
@@ -28,7 +30,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "ジャケット/アウター",
                   ),
                   onTap: () {
-                    print("jacket-and-outer");
                     var test = Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -47,7 +48,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "トップス",
                   ),
                   onTap: () {
-                    print("tops");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -65,7 +65,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "パンツ",
                   ),
                   onTap: () async {
-                    print("pants");
                     var test = await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -84,7 +83,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "ワンピース/ドレス",
                   ),
                   onTap: () {
-                    print("one-piece-and-dress");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -102,7 +100,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "スカート",
                   ),
                   onTap: () {
-                    print("skirt");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -120,7 +117,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "ソックス",
                   ),
                   onTap: () {
-                    print("socks");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -138,7 +134,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "シューズ",
                   ),
                   onTap: () {
-                    print("shoes");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -156,7 +151,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "帽子",
                   ),
                   onTap: () {
-                    print("cap");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -174,7 +168,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "メガネ",
                   ),
                   onTap: () {
-                    print("glasses");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -192,7 +185,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "アクセサリー",
                   ),
                   onTap: () {
-                    print("accessories");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -210,7 +202,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "バッグ",
                   ),
                   onTap: () {
-                    print("bag");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -228,7 +219,6 @@ class SelectClothesCategoryForChoosingClothesScreen extends StatelessWidget {
                     text: "腕時計",
                   ),
                   onTap: () {
-                    print("hand-watch");
                     Navigator.push(
                       context,
                       MaterialPageRoute(

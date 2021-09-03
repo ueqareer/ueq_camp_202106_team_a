@@ -28,7 +28,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final _imagePicker = ImagePicker();
 
   Future<String> _registerAccountToAuth(String email, String password) async {
-    print("アカウント作成");
     final _auth = FirebaseAuth.instance;
     try {
       final newUser = await _auth.createUserWithEmailAndPassword(
@@ -80,7 +79,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   Future<void> downloadImageFromFireStorage(TaskSnapshot storedImage) async {
     final String downloadUrl = await storedImage.ref.getDownloadURL();
-    print("download url：$downloadUrl");
     this._profileImageUrl = downloadUrl;
   }
 
@@ -92,10 +90,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       await future.then((uid) => _registerUserInfoToFirestore(uid!, userName));
       Navigator.pop(context);
     }
-    // Authにアカウント登録
-    // Firestoreにuser info登録（この時点ではprofileImageUrl = ""） 返り値：uid
-    // FireStorageに画像を登録して、登録した画像のurl取得
-    // Firestoreのuser infoをアップデート（profileImageUrl = 取得したprofileImageUrl）
   }
 
   Future<File> getImageFileFromAssets(String path) async {
@@ -134,12 +128,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   @override
   Widget build(BuildContext context) {
     final bottomSpace = MediaQuery.of(context).viewInsets.bottom;
-    return NeumorphicApp(
-        home: SafeArea(
+    return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: NeumorphicCustomAppBar(
-          title: "Create Account",
+          leading: Container(),
+          title: "Coordinect",
           fontSize: 30.0,
         ),
         body: SingleChildScrollView(
@@ -165,7 +159,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                     ),
                     onTap: () async {
-                      print('プロフィール画像の変更');
                       await _getImageFromGallery();
                     },
                   ),
@@ -241,6 +234,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           ),
         ),
       ),
-    ));
+    );
   }
 }
