@@ -78,22 +78,20 @@ class _SelectCoordinationForOtherUserScreenState
     }
   }
 
-  Future<String> getUserNameFromFirestore() async {
-    String _uid = getUidOfCurrentUser();
+  Future<String> getUserNameFromFirestore(String uid) async {
     String _userName = "";
     CollectionReference _users = FirebaseFirestore.instance.collection("users");
-    await _users.doc(_uid).get().then((doc) {
+    await _users.doc(uid).get().then((doc) {
       _userName = doc.get('userName');
     });
 
     return Future.value(_userName);
   }
 
-  Future<String> getProfileImageUrlFromFirestore() async {
-    String _uid = getUidOfCurrentUser();
+  Future<String> getProfileImageUrlFromFirestore(String uid) async {
     String _profileImageUrl = "";
     CollectionReference _users = FirebaseFirestore.instance.collection("users");
-    await _users.doc(_uid).get().then((doc) {
+    await _users.doc(uid).get().then((doc) {
       _profileImageUrl = doc.get('profileImageUrl');
     });
 
@@ -114,8 +112,8 @@ class _SelectCoordinationForOtherUserScreenState
         this.glassesImageUrlList +
         this.bagImageUrlList;
 
-    String userName = await getUserNameFromFirestore();
-    String profileImageUrl = await getProfileImageUrlFromFirestore();
+    String userName = await getUserNameFromFirestore(widget.uid);
+    String profileImageUrl = await getProfileImageUrlFromFirestore(widget.uid);
 
     if (coordinationList.isNotEmpty) {
       CollectionReference _coordination =
